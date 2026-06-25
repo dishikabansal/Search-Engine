@@ -1,4 +1,4 @@
-# Mini Search Engine (C++)
+# Inverted Index Search Engine (C++)
 
 A modular **mini search engine implemented in C++** demonstrating how **Discrete Mathematics concepts such as Set Theory, Relations, and Hashing power real search systems**.
 
@@ -32,41 +32,6 @@ This allows queries to be processed using **fast set operations**.
 
 ---
 
-# Discrete Mathematics Concepts Used
-
-## Set Theory
-
-Each word corresponds to a **set of documents** containing it.
-
-Example:
-
-hello → {1,2}
-world → {1,3}
-
-Query:
-
-hello AND world
-
-Mathematically:
-
-{1,2} ∩ {1,3} = {1}
-
----
-
-## Relations
-
-The inverted index represents the relation:
-
-R ⊆ Words × Documents
-
-Example pairs:
-
-(hello,1)
-(hello,2)
-(world,1)
-(world,3)
-
----
 
 ## Hashing
 
