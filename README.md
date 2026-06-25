@@ -271,9 +271,9 @@ This project demonstrates:
 
 # Author
 
-Moulik Choudhary
+Dishika Bansal
 Computer Science Engineering Student
-Chandigarh University
+Indira Gandhi Delhi Technical University for women
 
 GitHub:
-https://github.com/Moulik-ai
+https://github.com/dishikabansal
