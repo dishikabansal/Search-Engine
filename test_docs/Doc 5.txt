@@ -1,1 +1,1 @@
-hello ai world
+I am a student of computer science and engineering. This is a DSA based project.
