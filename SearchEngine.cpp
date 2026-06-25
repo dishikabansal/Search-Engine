@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <filesystem>
 #include <cctype>
+#include <cmath>
 
 using namespace std;
 namespace fs = filesystem;
@@ -56,7 +57,7 @@ void SearchEngine::searchQuery(const string& query) const {
 
     set<int> results = qe.search(query);
 
-    cout << "\nSearch Results:\n";
+    cout << "\nBoolean Search Results:\n";
 
     if (results.empty())
     {
@@ -65,8 +66,7 @@ void SearchEngine::searchQuery(const string& query) const {
     }
 
     for (int id : results) {
-        cout << "Doc " << id << ": "
-             << documents[id-1] << endl;
+        cout << "Doc " << id << ": ";
     }
 }
 
@@ -114,7 +114,7 @@ void SearchEngine::tfidfSearch(const string& word) const {
         return;
     }
 
-    double idf = long((double)N / DF);
+    double idf = log((double)N / DF);
 
     vector<pair<int,double>> scores;
 
@@ -141,7 +141,7 @@ void SearchEngine::tfidfSearch(const string& word) const {
     for (auto &p : scores) {
         cout << "Doc " << p.first 
             << " (score " << p.second << "): "
-            << documents[p.first-1] << endl;
+        <<endl;    
     }
 }
 
@@ -163,8 +163,7 @@ void SearchEngine::phraseSearch(const string& phrase) const {
     cout << "\nPhrase Search Results:\n";
 
     for (int id : docs) {
-        cout << "Doc " << id << ": "
-             << documents[id-1] << endl;
+        cout << "Doc " << id <<endl;
     }
 }
 

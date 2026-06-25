@@ -1,10 +1,14 @@
 #include "Indexer.h"
 #include "Tokenizer.h"
 #include <iostream>
+#include <chrono>
+
 
 using namespace std;
 
 void Indexer::buildIndex(const vector<string>& documents) {
+    auto start = chrono::high_resolution_clock::now();
+
     for (int docID = 0; docID < documents.size(); docID++) {
         vector<string> tokens = Tokenizer::tokenize(documents[docID]);
 
@@ -13,6 +17,11 @@ void Indexer::buildIndex(const vector<string>& documents) {
             invertedIndex[word][docID+1].push_back(pos);
         }
     }
+    auto end = chrono::high_resolution_clock::now();
+
+cout << "Indexing Time: "
+     << chrono::duration_cast<chrono::milliseconds>(end-start).count()
+     << " ms\n";
 }
 
 void Indexer::displayIndex() const {
@@ -61,20 +70,24 @@ vector<int> Indexer::phraseSearch(const string& w1, const string& w2) const
     const auto& docs1 = invertedIndex.at(w1);
     const auto& docs2 = invertedIndex.at(w2);
 
-    for (auto& [docID, pos1] : docs1) {
+    for (const auto& [docID, pos1] : docs1) {
         if (!docs2.count(docID)) {
             continue;
         }
 
         const vector<int>& pos2 = docs2.at(docID);
 
+        bool found = false;
+
         for (int p1 : pos1) {
             for (int p2 : pos2) {
                 if (p2 == p1 + 1) {
                     result.push_back(docID);
+                    found = true;
                     break;
                 }
             }
+            if(found)  break;
         }
     }
 

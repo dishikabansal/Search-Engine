@@ -11,12 +11,11 @@ int main() {
 
     SearchEngine engine;
 
-    engine.loadDocumentsFromDirectory("test_docs");
+    engine.loadDocumentsFromDirectory("benchmark_docs");
     engine.buildIndex();
 
     int choice;
     string query;
-    engine.tfidfSearch(query);
 
     while (true)
     {
@@ -71,7 +70,6 @@ int main() {
             cout << "Invalid choice.\n";
         }
     }
-    engine.tfidfSearch(query);
 
     return 0;
 }
